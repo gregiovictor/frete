@@ -1,0 +1,113 @@
+Consulta de Fretes
+
+Script em Python desenvolvido para centralizar e padronizar a consulta de localidades e fretes, proporcionando respostas mais rápidas e reduzindo inconsistências na comunicação entre os setores envolvidos.
+
+Status: Em desenvolvimento
+
+Sobre o projeto
+
+Atualmente, a equipe de vendas consulta fretes de duas formas:
+
+Entregas no mesmo município: os valores ficam registrados em folhas de papel e são consultados manualmente.
+
+Entregas pelos Correios: o preço é consultado na plataforma Melhor Envio, encaminhado ao setor financeiro para conferência e ajuste e, posteriormente, repassado verbalmente à equipe de vendas.
+
+Além disso, todos os funcionários compartilham a mesma conta do Melhor Envio. Quando algum funcionário fica sem acesso, precisa recorrer ao setor de logística, criando mais um gargalo no processo.
+
+O resultado é um fluxo que envolve três setores (vendas, financeiro e logística), demanda tempo e abre espaço para inconsistências, como valores esquecidos, ajustes aplicados de forma diferente e informações que podem se perder durante a comunicação.
+
+O objetivo é desenvolver uma ferramenta interna que centralize e padronize essas consultas, reduzindo etapas manuais e dependências entre setores e proporcionando mais agilidade ao atendimento.
+
+Com a futura integração à API do Melhor Envio, as consultas poderão ser realizadas diretamente pelo script, sem depender do acesso compartilhado à plataforma.
+
+Funcionalidades
+
+Consulta de CEP (versão atual)
+
+Recebe o CEP informado pelo usuário, com ou sem hífen.
+
+Valida o formato antes de realizar a consulta.
+
+Consulta a API ViaCEP.
+
+Identifica CEPs inexistentes.
+
+Retorna as seguintes informações:
+
+Município;
+
+UF;
+
+Bairro.
+
+Exemplo de uso
+
+Consulta realizada com sucesso:
+
+$ python main.py
+
+Digite o CEP: 01001-000
+
+Município: São Paulo
+UF: SP
+Bairro: Sé
+
+CEP com formato inválido:
+
+Digite o CEP: 12345
+
+CEP inválido. Informe 8 dígitos.
+
+CEP inexistente:
+
+Digite o CEP: 99999-999
+
+CEP não encontrado.
+
+Tecnologias utilizadas
+
+Python 3: linguagem utilizada no desenvolvimento.
+
+Requests: biblioteca utilizada para realizar requisições HTTP.
+
+ViaCEP: API utilizada para consulta de informações de CEP.
+
+Como executar
+
+Pré-requisitos:
+
+Python 3 instalado.
+
+Conexão com a internet.
+
+1. Instale a dependência
+
+pip install requests
+
+2. Execute o script
+
+python main.py
+
+3. Informe o CEP
+
+Digite o CEP desejado quando o programa solicitar.
+
+Roadmap
+
+Consulta de CEP via ViaCEP com validação de formato.
+
+Modularização do código em funções.
+
+Integração com a API do Melhor Envio para consulta de preços e prazos de frete.
+
+Implementação de regras de cálculo e reajuste de valores, definidas em conjunto com o setor financeiro.
+
+Padronização das informações de entrega para utilização pela equipe de vendas.
+
+Disponibilização do script em servidor para uso compartilhado pela equipe.
+
+Evolução para um painel de trabalho com novas ferramentas internas.
+
+Segurança: na integração com o Melhor Envio, a chave de API será armazenada em uma variável de ambiente, nunca diretamente no código-fonte.
+
+Autor: Victor Grégio
