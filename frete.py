@@ -1,21 +1,31 @@
 import requests
-import sys
-cep = input("Digite o CEP: ").strip()
-cep = cep.replace("-","")
 
-if cep.isdigit() and len(cep) == 8:
-  print("Formato de CEP Válido")
-else:
-   print("Formato de CEP Inválido")
-   sys.exit()
+def valida_cep(cep):
+  cep = cep.replace("-","").strip()
+  if cep.isdigit() and len(cep) == 8:
+    return True
+  else:
+    return False
 
-url = f"https://viacep.com.br/ws/{cep}/json/"
-response = requests.get(url)
-dados = response.json()
+def consulta_cep(cep):
+  url = f"https://viacep.com.br/ws/{cep}/json/"
+  response = requests.get(url)
+  dados = response.json()
+  if "erro" in dados:
+    return None
+  else:
+    return dados
 
-if "erro" in dados:
-  print("CEP não encontrado")
-  sys.exit()
-else:
-  print(f"Logradouro: {dados['logradouro']}")
-  print(f"Bairro: {dados['bairro']}")
+
+while True:
+  cep = input("Digite o CEP: ").strip()
+  if valida_cep(cep):
+    dados = consulta_cep(cep)
+    if dados is None:
+      print("CEP não encontrado")
+    else:
+      print(f"Logradouro: {dados['logradouro']}")
+      print(f"Bairro: {dados['bairro']}")
+      break
+  else:
+    print("Formato de CEP inválido")
