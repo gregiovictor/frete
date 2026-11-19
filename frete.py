@@ -26,6 +26,10 @@ while True:
     else:
       print(f"Logradouro: {dados['logradouro']}")
       print(f"Bairro: {dados['bairro']}")
-      break
+      opcao = input("\n Digite 0 para nova consulta (outra tecla para sair)")
+
+      if opcao != "0":
+        print("Encerrando...")
+        break
   else:
     print("Formato de CEP inválido")
